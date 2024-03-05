@@ -1,0 +1,149 @@
+﻿@model IEnumerable<Aplicatia1.Models.Elev>
+
+@{
+    ViewData["Title"] = "Index";
+    var eleviRestantieri = Model.Where(elev => elev.NotaMedie < 5).OrderBy(elev =>elev.NotaMedie).ToList();
+    var eleviNotaMaxime = Model.Where(elev => elev.NotaMedie > 7).OrderBy(elev => elev.NotaMedie).ToList();
+}
+
+<h1>Lista tuturor elevilor:</h1>
+
+<p>
+    <a asp-action="Create">Adauga elev</a>
+</p>
+<table class="table mb-5">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prenume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grupa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotaMedie)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prenume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grupa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NotaMedie)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<p>
+    <h1>Elevii restanțieri:</h1>
+</p>
+<table class="table mb-5">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prenume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grupa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotaMedie)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in eleviRestantieri)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prenume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grupa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotaMedie)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <h1>Elevii ce au note mai mari ca 7:</h1>
+</p>
+<table class="table mb-5">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prenume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grupa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NotaMedie)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in eleviNotaMaxime)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prenume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grupa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotaMedie)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
